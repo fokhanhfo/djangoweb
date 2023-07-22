@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block search %}
+<div class="row" style="width: 100%;">
+    <p class="card-text">Kết quả tìm kiếm cho từ khoá '{{searchs}}'</p>
+    {% for items in keys %}
+      <div class="col-lg-3">
+        <div class="card" style="width: 18rem;">
+          <img src="{{items.Images}}" class="card-img-top thumbnail" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{items.name}}</h5>
+            <p class="card-text">{{ items.price|floatformat:0|intcomma }} VND</p>
+            <button data-product={{items.id}} data-action = "add" class="btn btn-outline-secondary add-btn update-cart" >Add cart</button>
+            <a href="{% url 'view' items.id %}" class="btn btn-outline-success">View</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+<br></br>
+{% endblock search %}
